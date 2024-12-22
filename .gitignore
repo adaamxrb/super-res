@@ -1,0 +1,14 @@
+!.gitignore
+
+#Ignore File in Folder
+Dataset/*
+!Dataset/.gitkeep
+Hasil/*
+!Hasil/.gitkeep
+Input/*
+!Input/.gitkeep
+pt_model/*
+!pt_model/.gitkeep
+tr_model/*
+!tr_model/.gitkeep
+
