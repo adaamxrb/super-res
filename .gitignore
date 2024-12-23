@@ -1,6 +1,7 @@
 !.gitignore
 
 #Ignore File in Folder
+__pycache__
 Dataset/*
 !Dataset/.gitkeep
 Hasil/*
