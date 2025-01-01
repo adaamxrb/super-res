@@ -365,7 +365,7 @@ class Upsample2xBlock(nn.Module):
             self.upsample = PSBlock(input_size, output_size, scale_factor=scale_factor,
                                     bias=bias, activation=activation, norm=norm)
 
-        # 3. Resize and Convolution
+        # 3. Resize & Convolution
         elif upsample == 'rnc':
             self.upsample = nn.Sequential(
                 nn.Upsample(scale_factor=scale_factor, mode='nearest'),
@@ -378,10 +378,9 @@ class Upsample2xBlock(nn.Module):
         out = self.upsample(x)
         return out
 
-class Net(nn.Module):
+class Network(nn.Module):
     def __init__(self, num_channels, base_filter, feat, num_stages, scale_factor):
-        super(Net, self).__init__()
-
+        super(Network, self).__init__()
         if scale_factor == 2:
             kernel = 6
             stride = 2
@@ -398,7 +397,7 @@ class Net(nn.Module):
         # Initial Feature Extraction
         self.feat0 = ConvBlock(num_channels, feat, 3, 1, 1, activation='prelu', norm=None)
         self.feat1 = ConvBlock(feat, base_filter, 1, 1, 0, activation='prelu', norm=None)
-        # Back-projection stages
+        # Back-projection
         self.up1 = UpBlock(base_filter, kernel, stride, padding)
         self.down1 = DownBlock(base_filter, kernel, stride, padding)
         self.up2 = UpBlock(base_filter, kernel, stride, padding)

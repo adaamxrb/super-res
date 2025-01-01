@@ -8,14 +8,15 @@ import torch.nn as nn
 import torch.optim as optim
 import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
-from dbpn import Net as DBPN
+from dbpn import Network as DBPN
 from data import get_training_set
 import time
 
 # ============================
 # 🎯 Konfigurasi Pelatihan
 # ============================
-parser = argparse.ArgumentParser(description='Contoh Penggunaan : \npython main.py --upscale_factor 2 --batchSize 4 --epochs 200 --snapshots 10 --start_iter 1 --lr 0.01 --gpu_mode True --threads 4 --seed 123 --gpus 1 --data_dir ./Dataset --data_augmentation True --hr_train_dataset DIV2K_train_HR --residual True --patch_size 40 --pretrained_sr pt_model/DBPN_2x.pth --pretrained True --save_folder tr_model/ --prefix -x2-residual')
+
+parser = argparse.ArgumentParser(description='Contoh Penggunaan :\n python main.py --upscale_factor 2 --batchSize 4 --epochs 200 --snapshots 10 ....')
 parser.add_argument('--upscale_factor', type=int, default=4, help="Faktor upscaling")
 parser.add_argument('--batchSize', type=int, default=2, help='Ukuran batch')
 parser.add_argument('--epochs', type=int, default=50, help='Jumlah epoch')
@@ -114,7 +115,7 @@ def checkpoint(epoch):
     model_out_path = opt.save_folder + opt.hr_train_dataset + "-" + \
         "DBPN" + opt.prefix + "_epoch_{}.pth".format(epoch)
     torch.save(model.state_dict(), model_out_path)
-    print("Checkpoint disimpan di: {}".format(model_out_path))
+    print("Model disimpan di: {}".format(model_out_path))
 
 
 if __name__ == '__main__':
@@ -149,12 +150,14 @@ if __name__ == '__main__':
     training_data_loader = DataLoader(
         dataset=train_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=True)
 
-    print("🛠️  Menyiapkan model...")
+
     print("🔍 Memuat dataset penguji...")
     test_set = get_training_set(opt.data_dir, opt.hr_train_dataset,
                                 opt.upscale_factor, opt.patch_size, opt.data_augmentation)
     testing_data_loader = DataLoader(
         dataset=test_set, num_workers=opt.threads, batch_size=opt.batchSize, shuffle=False)
+    
+    print("🔨 Memuat Model DBPN...")
     model = DBPN(num_channels=3, base_filter=64, feat=256, num_stages=7, scale_factor=opt.upscale_factor)
 
     model = torch.nn.DataParallel(model, device_ids=gpus_list)
@@ -194,7 +197,7 @@ if __name__ == '__main__':
             print("📊 Loss Change               : {:.4f}".format(avg_loss - prev_avg_loss))
         print("🎯 Average PSNR              : {:.4f} dB".format(avg_psnr))
         if prev_avg_psnr is not None:
-            print("🎯 PSNR Change               : {:.4f} dB".format( - prev_avg_psnr))
+            print("🎯 PSNR Change               : {:.4f} dB".format(avg_psnr - prev_avg_psnr))
         print("🔄 Total Epochs Run          : {}/{}".format(epoch, opt.epochs))
         print("🕒 Total Time Elapsed        : {}".format(elapsed_time_str))
         print("💡 Status                    : Training Berhasil ")
@@ -211,3 +214,4 @@ if __name__ == '__main__':
 
         if (epoch+1) % (opt.snapshots) == 0:
             checkpoint(epoch)
+            
