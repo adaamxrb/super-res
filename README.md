@@ -25,7 +25,7 @@ Berikut adalah contoh hasil pengujian menggunakan dataset [Set5](https://papersw
 ## Team
 
 -   [Adham Roy Bhafiel](https://github.com/adaamxrb)
--   [Erika Putri Lestari](https://github.com/erikaprls)
--   [Azila Lailannafisa](https://github.com/azilafisa)
 -   [Athaya Aqilah](https://github.com/athayaaqilaa)
+-   [Azila Lailannafisa](https://github.com/azilafisa)
 -   [Bintang Tiara Pramesti](https://github.com/bintangtiara/)
+-   [Erika Putri Lestari](https://github.com/erikaprls)
