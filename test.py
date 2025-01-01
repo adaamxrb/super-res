@@ -5,7 +5,7 @@ import torch
 import time
 import cv2
 from torch.utils.data import DataLoader
-from dbpn import Net as DBPN
+from dbpn import Network as DBPN
 from data import get_eval_set
 from functools import reduce
 from tabulate import tabulate
@@ -13,8 +13,8 @@ from tabulate import tabulate
 # ============================
 # 🎯 Konfigurasi Pengujian
 # ============================
-parser = argparse.ArgumentParser(description='PyTorch Super Res Example')
-parser.add_argument('--upscale_factor', type=int, default=2, help="super resolution upscale factor")
+parser = argparse.ArgumentParser(description='Contoh Penggunaan :\n python test.py --upscale_factor 2...')
+parser.add_argument('--upscale_factor', type=int, default=4, help="super resolution upscale factor")
 parser.add_argument('--testBatchSize', type=int,default=1, help='testing batch size')
 parser.add_argument('--gpu_mode', type=bool, default=True)
 parser.add_argument('--self_ensemble', type=bool, default=False)
@@ -24,10 +24,9 @@ parser.add_argument('--seed', type=int, default=123, help='random seed to use. D
 parser.add_argument('--gpus', default=1, type=int, help='number of gpu')
 parser.add_argument('--input_dir', type=str, default='Input')
 parser.add_argument('--output', default='Hasil/', help='Location to save checkpoint models')
-parser.add_argument('--test_dataset', type=str, default='Set5_LR_x2')
-parser.add_argument('--model_type', type=str, default='DBPN')
+parser.add_argument('--test_dataset', type=str, default='Set5_LR_x4')
 parser.add_argument('--residual', type=bool, default=True)
-parser.add_argument('--model', default=r'tr_model/DIV2K_train_HR-DBPN-x2-residual_epoch_9.pth')
+parser.add_argument('--model', default=r'tr_model\DIV2K_train_HR-DBPN-x4-residual-epoch-99.pth')
 
 opt = parser.parse_args()
 gpus_list = range(opt.gpus)
@@ -66,7 +65,7 @@ testing_data_loader = DataLoader(
 # ============================
 # 🛠️ Menyiapkan Model
 # ============================
-print("🛠️  ==> Menyiapkan model...")
+print("🛠️  ==> Memuat model...")
 model = DBPN(num_channels=3, base_filter=64, feat=256,
              num_stages=7, scale_factor=opt.upscale_factor)
 

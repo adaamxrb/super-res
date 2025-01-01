@@ -35,7 +35,7 @@ parser.add_argument('--patch_size', type=int, default=40,help='Ukuran gambar hig
 parser.add_argument('--pretrained_sr', default='pt_model/DBPN_4x.pth', help='Lokasi pretrained model base sr')
 parser.add_argument('--pretrained', type=bool, default=True, help='Apakah menggunakan pretrained model')
 parser.add_argument('--save_folder', default='tr_model/', help='Lokasi penyimpanan model checkpoint')
-parser.add_argument('--prefix', default='-x4-residual-dbpn', help='Jenis model yang disimpan')
+parser.add_argument('--prefix', default='-x4-residual', help='Jenis model yang disimpan')
 
 opt = parser.parse_args()
 gpus_list = range(opt.gpus)
@@ -113,7 +113,7 @@ def test(epoch):
 
 def checkpoint(epoch):
     model_out_path = opt.save_folder + opt.hr_train_dataset + "-" + \
-        "DBPN" + opt.prefix + "_epoch_{}.pth".format(epoch)
+        "DBPN" + opt.prefix + "-epoch-{}.pth".format(epoch)
     torch.save(model.state_dict(), model_out_path)
     print("Model disimpan di: {}".format(model_out_path))
 
