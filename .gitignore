@@ -1,4 +1,5 @@
 !.gitignore
+__pycache__/
 
 #Ignore File in Folder
 Dataset/*
@@ -9,6 +10,4 @@ Input/*
 !Input/.gitkeep
 pt_model/*
 !pt_model/.gitkeep
-tr_model/*
-!tr_model/.gitkeep
 
