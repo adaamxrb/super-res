@@ -1,6 +1,6 @@
 # Super-Resolution with Deep Back-Projection Networks
 
-Repository ini merupakan implementasi dari jurnal berjudul "Deep Back-Projection Networks For Super-Resolution" yang ditulis oleh Haris, Muhammad A., Greg Shakhnarovich, dan Norimichi Ukita. Program ini menggunakan model Deep Back-Projection Networks (DBPN) untuk meningkatkan resolusi gambar.
+Repository ini merupakan implementasi dari jurnal berjudul "Deep Back-Projection Networks For Super-Resolution". Program ini menggunakan model Deep Back-Projection Networks (DBPN) untuk meningkatkan resolusi gambar.
 
 ## Deep Back-Projection Networks (DBPN)
 
@@ -10,17 +10,17 @@ DBPN adalah model jaringan saraf tiruan yang digunakan untuk meningkatkan resolu
 
 ## Dataset
 
-Dataset yang digunakan dalam training model adalah [DIV2K Dataset](https://figshare.com/articles/dataset/DIV2K_train_HR_zip/9785438/1?file=17544995), yang berisi gambar dengan resolusi tinggi dan rendah. Dataset ini sering digunakan dalam penelitian super-resolusi gambar.
+Dataset yang digunakan dalam training model yakni [DIV2K_train_HR](https://figshare.com/articles/dataset/DIV2K_train_HR_zip/9785438/1?file=17544995), yang berisi gambar dengan resolusi tinggi dan rendah. Dataset ini sering digunakan dalam penelitian super-resolusi gambar.
 
 ## Result
 
-Berikut adalah contoh hasil pengujian menggunakan dataset [Set5](https://paperswithcode.com/dataset/set5) dengan scale x2, x4, dan x8 menggunakan model DBPN yang sudah dilatih.
+Berikut adalah contoh hasil pengujian menggunakan dataset [Set5](https://paperswithcode.com/dataset/set5) dengan scale x2, x4, dan x8 menggunakan [model yang sudah dilatih.](tr_model/)
 
-| Scale Factor | Input Image                    | Output Image                    |
-| ------------ | ------------------------------ | ------------------------------- |
-| <h3>x2</h3>  | ![Input Image](assets/i2x.png) | ![Output Image](assets/o2x.png) |
-| <h3>x4</h3>  | ![Input Image](assets/i4x.png) | ![Output Image](assets/o4x.png) |
-| <h3>x8</h3>  | coming soon                    | coming soon                     |
+| Name           | High Resolution Image                             | Input Image <br> (_Low Resolution_) | Output Image <br> (_Super Resolution_) | Scale Factor |
+| -------------- | ------------------------------------------------- | ----------------------------------- | -------------------------------------- | ------------ |
+| Set5_butterfly | ![High Resolution Image](assets/butterfly_HR.png) | ![Input Image](assets/i2x.png)      | ![Output Image](assets/o2x.png)        | <h3>x2</h3>  |
+| Set5_baby      | ![High Resolution Image](assets/baby_HR.png)      | ![Input Image](assets/i4x.png)      | ![Output Image](assets/o4x.png)        | <h3>x4</h3>  |
+| Set5_head      | ![High Resolution Image](assets/head_HR.png)      | ![Input Image](assets/i8x.png)      | ![Output Image](assets/o8x.png)        | <h3>x8</h3>  |
 
 ## Team
 

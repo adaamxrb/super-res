@@ -17,9 +17,9 @@ import time
 # ============================
 
 parser = argparse.ArgumentParser(description='Contoh Penggunaan :\n python main.py --upscale_factor 2 --batchSize 4 --epochs 200 --snapshots 10 ....')
-parser.add_argument('--upscale_factor', type=int, default=4, help="Faktor upscaling")
-parser.add_argument('--batchSize', type=int, default=2, help='Ukuran batch')
-parser.add_argument('--epochs', type=int, default=50, help='Jumlah epoch')
+parser.add_argument('--upscale_factor', type=int, default=8, help="Faktor upscaling")
+parser.add_argument('--batchSize', type=int, default=1, help='Ukuran batch')
+parser.add_argument('--epochs', type=int, default=20, help='Jumlah epoch')
 parser.add_argument('--snapshots', type=int, default=10, help='Interval Checkpoint')
 parser.add_argument('--start_iter', type=int, default=1, help='Mulai iterasi')
 parser.add_argument('--lr', type=float, default=1e-4, help='Jumlah Learning Rate. Default=0.0001')
@@ -32,10 +32,10 @@ parser.add_argument('--data_augmentation', type=bool, default=True, help='Apakah
 parser.add_argument('--hr_train_dataset', type=str, default='DIV2K_train_HR', help='Nama dataset high resolution')
 parser.add_argument('--residual', type=bool, default=True, help='Apakah menggunakan residual learning')
 parser.add_argument('--patch_size', type=int, default=40,help='Ukuran gambar high resolution yang di-crop')
-parser.add_argument('--pretrained_sr', default='pt_model/DBPN_4x.pth', help='Lokasi pretrained model base sr')
+parser.add_argument('--pretrained_sr', default='pt_model/DBPN-RES-MR64-3_8x.pth', help='Lokasi pretrained model base sr')
 parser.add_argument('--pretrained', type=bool, default=True, help='Apakah menggunakan pretrained model')
 parser.add_argument('--save_folder', default='tr_model/', help='Lokasi penyimpanan model checkpoint')
-parser.add_argument('--prefix', default='-x4-residual', help='Jenis model yang disimpan')
+parser.add_argument('--prefix', default='-x8-residual', help='Jenis model yang disimpan')
 
 opt = parser.parse_args()
 gpus_list = range(opt.gpus)

@@ -26,7 +26,7 @@ parser.add_argument('--input_dir', type=str, default='Input')
 parser.add_argument('--output', default='Hasil/', help='Location to save checkpoint models')
 parser.add_argument('--test_dataset', type=str, default='Set5_LR_x4')
 parser.add_argument('--residual', type=bool, default=True)
-parser.add_argument('--model', default=r'tr_model\DIV2K_train_HR-DBPN-x4-residual-epoch-99.pth')
+parser.add_argument('--model', default=r'tr_model/DIV2K_train_HR-DBPN-x4-residual-epoch-99.pth')
 
 opt = parser.parse_args()
 gpus_list = range(opt.gpus)
